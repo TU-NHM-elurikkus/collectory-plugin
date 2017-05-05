@@ -1,7 +1,7 @@
 import au.org.ala.collectory.Licence
 import au.org.ala.collectory.Sequence
 
-class CollectoryBootStrap {
+class ErkcollectoryBootStrap {
 
     def grailsApplication
 

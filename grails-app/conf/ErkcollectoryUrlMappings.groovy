@@ -1,4 +1,4 @@
-class CollectoryUrlMappings {
+class ErkcollectoryUrlMappings {
     static mappings = {
         name standard: "/$controller/$action?/$id?"{
             constraints {

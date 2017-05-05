@@ -2,7 +2,7 @@ import org.codehaus.groovy.grails.context.support.PluginAwareResourceBundleMessa
 import au.org.ala.collectory.ExtendedPluginAwareResourceBundleMessageSource
 import grails.util.Environment
 
-class CollectoryGrailsPlugin {
+class ErkcollectoryGrailsPlugin {
 
     def grailsApplication
     def dataLoaderService
