@@ -76,10 +76,10 @@ class DataImportService {
      * @return
      */
     def importDataFileForDataResource(dataResource, filetoImport, params, migrate) {
-
         if(migrate) {
             def fileId = System.currentTimeMillis()
             def uploadDirPath = grailsApplication.config.uploadFilePath + fileId
+
             log.debug "Creating upload directory " + uploadDirPath
             def uploadDir = new File(uploadDirPath)
             FileUtils.forceMkdir(uploadDir)
@@ -94,8 +94,11 @@ class DataImportService {
                 newFile = new File(uploadDirPath + File.separatorChar + filetoImport.getName())
                 FileUtils.copyFile(filetoImport, newFile)
             }
+
+            importDataFileForDataResource(dataResource, newFile, params)
+        } else {
+            importDataFileForDataResource(dataResource, filetoImport, params)
         }
-        importDataFileForDataResource(dataResource, filetoImport, params)
     }
 
     /**
