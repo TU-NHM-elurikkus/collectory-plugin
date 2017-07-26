@@ -1,7 +1,7 @@
 package au.org.ala.collectory
 
 import grails.converters.JSON
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 import au.com.bytecode.opencsv.CSVReader
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
 //import org.codehaus.groovy.grails.plugins.reloadableconfig.ConfigurationResourceListener
@@ -13,7 +13,7 @@ class AdminController {
     def dataLoaderService, idGeneratorService, collectoryAuthService, metadataService
     def grailsApplication
     //static defaultAction = "home"
-    
+
 /*
  * Access control
  *
@@ -40,7 +40,7 @@ class AdminController {
 
     def reloadConfig = {
         def resolver = new PathMatchingResourcePatternResolver()
-        def configurationResource = resolver.getResource(ConfigurationHolder.config.reloadable.cfgs[0])
+        def configurationResource = resolver.getResource(Holders.config.reloadable.cfgs[0])
         //new ConfigurationResourceListener().onResourceUpdate(configurationResource)
         String res = "<ul>"
         grailsApplication.config.each { key, value ->
@@ -58,14 +58,14 @@ class AdminController {
         }
         render res + "</ul>"
         //response.addHeader('ContentType','application/json')
-        //render ConfigurationHolder.config.biocache as JSON
+        //render Holders.config.biocache as JSON
     }
 
     def showConfig = {
-        def target = params.scope ? ConfigurationHolder.config[params.scope] : ConfigurationHolder.config
+        def target = params.scope ? Holders.config[params.scope] : Holders.config
         if (target instanceof ConfigObject) {
             String res = "<ul>"
-            ConfigurationHolder.config.each { key, value ->
+            Holders.config.each { key, value ->
                 if (value instanceof Map) {
                     res += "<p>" + key + "</p>"
                     res += "<ul>"

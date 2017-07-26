@@ -1,7 +1,5 @@
 package au.org.ala.collectory
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
-
 class ProviderMapController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -101,7 +99,7 @@ class ProviderMapController {
             if (params.version) {
                 def version = params.version.toLong()
                 if (providerMapInstance.version > version) {
-                    
+
                     providerMapInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'providerMap.label', default: 'ProviderMap')] as Object[], "Another user has updated this ProviderMap while you were editing")
                     render(view: "edit", model: [providerMapInstance: providerMapInstance], params:[returnTo: params.returnTo])
                     return

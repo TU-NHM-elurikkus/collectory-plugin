@@ -4,7 +4,7 @@ import org.codehaus.groovy.grails.web.json.JSONArray
 import grails.converters.JSON
 
 import grails.web.JSONBuilder
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 import org.codehaus.groovy.grails.web.converters.exceptions.ConverterException
 import java.text.SimpleDateFormat
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -107,7 +107,7 @@ class CrudService {
                     caption = p.imageRef?.caption
                     copyright = p.imageRef?.copyright
                     attribution = p.imageRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataProvider/" + p.imageRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataProvider/" + p.imageRef.file
                 }
             }
             if (p.logoRef?.file) {
@@ -116,7 +116,7 @@ class CrudService {
                     caption = p.logoRef?.caption
                     copyright = p.logoRef?.copyright
                     attribution = p.logoRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataProvider/" + p.logoRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataProvider/" + p.logoRef.file
                 }
             }
             use (OutputFormat) {
@@ -149,7 +149,7 @@ class CrudService {
         }
         return dp
     }
-    
+
     def updateDataProvider(dp, obj) {
         updateBaseProperties(dp, obj)
         updateDataProviderProperties(dp, obj)
@@ -204,7 +204,7 @@ class CrudService {
                     caption = p.imageRef?.caption
                     copyright = p.imageRef?.copyright
                     attribution = p.imageRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataHub/" + p.imageRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataHub/" + p.imageRef.file
                 }
             }
             if (p.logoRef?.file) {
@@ -213,7 +213,7 @@ class CrudService {
                     caption = p.logoRef?.caption
                     copyright = p.logoRef?.copyright
                     attribution = p.logoRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataHub/" + p.logoRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataHub/" + p.logoRef.file
                 }
             }
             use (OutputFormat) {
@@ -296,7 +296,7 @@ class CrudService {
                     caption = p.imageRef?.caption
                     copyright = p.imageRef?.copyright
                     attribution = p.imageRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataResource/" + p.imageRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataResource/" + p.imageRef.file
                 }
             }
             if (p.logoRef?.file) {
@@ -305,7 +305,7 @@ class CrudService {
                     caption = p.logoRef?.caption
                     copyright = p.logoRef?.copyright
                     attribution = p.logoRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/dataResource/" + p.logoRef.file
+                    uri = Holders.config.grails.serverURL + "/data/dataResource/" + p.logoRef.file
                 }
             }
             use (OutputFormat) {
@@ -515,7 +515,7 @@ class CrudService {
                     caption = p.imageRef?.caption
                     copyright = p.imageRef?.copyright
                     attribution = p.imageRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/institution/" + p.imageRef.file
+                    uri = Holders.config.grails.serverURL + "/data/institution/" + p.imageRef.file
                 }
             }
             if (p.logoRef?.file) {
@@ -524,7 +524,7 @@ class CrudService {
                     caption = p.logoRef?.caption
                     copyright = p.logoRef?.copyright
                     attribution = p.logoRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/institution/" + p.logoRef.file
+                    uri = Holders.config.grails.serverURL + "/data/institution/" + p.logoRef.file
                 }
             }
             use (OutputFormat) {
@@ -621,7 +621,7 @@ class CrudService {
                     caption = p.imageRef?.caption
                     copyright = p.imageRef?.copyright
                     attribution = p.imageRef?.attribution
-                    uri = ConfigurationHolder.config.grails.serverURL + "/data/collection/" + p.imageRef.file
+                    uri = Holders.config.grails.serverURL + "/data/collection/" + p.imageRef.file
                 }
             }
             use (OutputFormat) {
@@ -932,19 +932,19 @@ class OutputFormat {
             switch (it) {
                 case 'CHAFC':
                     result << [name: 'Council of Heads of Australian Faunal Collections', acronym: it,
-                            logo: ConfigurationHolder.config.grails.serverURL + "/data/network/CHAFC_sm.jpg"]
+                            logo: Holders.config.grails.serverURL + "/data/network/CHAFC_sm.jpg"]
                     break
                 case 'CHAEC':
                     result << [name: 'Council of Heads of Australian Entomological Collections', acronym: it,
-                            logo: ConfigurationHolder.config.grails.serverURL + "/data/network/chaec-logo.png"]
+                            logo: Holders.config.grails.serverURL + "/data/network/chaec-logo.png"]
                     break
                 case 'CHAH':
                     result << [name: 'Council of Heads of Australasian Herbaria', acronym: it,
-                            logo: ConfigurationHolder.config.grails.serverURL + "/data/network/CHAH_logo_col_70px_white.gif"]
+                            logo: Holders.config.grails.serverURL + "/data/network/CHAH_logo_col_70px_white.gif"]
                     break
                 case 'CHACM':
                     result << [name: 'Council of Heads of Australian Collections of Microorganisms', acronym: it,
-                            logo: ConfigurationHolder.config.grails.serverURL + "/data/network/chacm.png"]
+                            logo: Holders.config.grails.serverURL + "/data/network/chacm.png"]
                     break
                 default:
                     result << "did not match"

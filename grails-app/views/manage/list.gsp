@@ -1,11 +1,11 @@
-<%@ page import="au.org.ala.collectory.Contact; org.codehaus.groovy.grails.commons.ConfigurationHolder; au.org.ala.collectory.ProviderGroup; au.org.ala.collectory.Collection" %>
+<%@ page import="au.org.ala.collectory.Contact; grails.util.Holders; au.org.ala.collectory.ProviderGroup; au.org.ala.collectory.Collection" %>
 <html>
     <head>
         <title><g:message code="manage.show.title" /></title>
 	    <meta name="layout" content="${grailsApplication.config.skin.layout}" />
         <r:require modules="smoothness, collectory, jquery_ui_custom" />
     </head>
-    
+
     <body>
       <div class="content">
 
@@ -270,7 +270,7 @@
             }
 
             function edit(uid) {
-                document.location.href = "${ConfigurationHolder.config.grails.serverURL}/manage/show/" + uid;
+                document.location.href = "${Holders.config.grails.serverURL}/manage/show/" + uid;
             }
             $('#instructions-link').click(function() {
                 var height = $('#instructions').css('height');
@@ -329,7 +329,7 @@
                 var isUnique = true;
                 // make a synchronous call to check existence of the name
                 $.ajax({
-                    url: "${ConfigurationHolder.config.grails.serverURL}/collection/nameExists?name=" + o.val(),
+                    url: "${Holders.config.grails.serverURL}/collection/nameExists?name=" + o.val(),
                     dataType: 'json',
                     async: false,
                     success: function(data) {
@@ -378,7 +378,7 @@
                             %{--//alert(fieldValues);--}%
                              %{--// redirect to create collection--}%
                             %{--document.location.href =--}%
-                               %{--"${ConfigurationHolder.config.grails.serverURL}/collection/create?name=" +--}%
+                               %{--"${Holders.config.grails.serverURL}/collection/create?name=" +--}%
                                        %{--$name.val() + fieldValues;--}%
                         %{--}--}%
                     %{--},--}%

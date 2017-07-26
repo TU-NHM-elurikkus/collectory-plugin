@@ -1,7 +1,7 @@
 package au.org.ala.collectory
 import au.com.bytecode.opencsv.CSVWriter
 import grails.converters.JSON
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 
 import java.text.NumberFormat
 import java.text.ParseException
@@ -257,7 +257,7 @@ class PublicController {
             render error as JSON
         } else {
             /* get decade breakdown */
-            def decadeUrl = ConfigurationHolder.config.biocacheServicesUrl+ "/breakdown/collection/decades/${instance.generatePermalink()}.json";
+            def decadeUrl = Holders.config.biocacheServicesUrl+ "/breakdown/collection/decades/${instance.generatePermalink()}.json";
             //println decadeUrl
             def conn = new URL(decadeUrl).openConnection()
             conn.setConnectTimeout 1500
@@ -307,7 +307,7 @@ class PublicController {
         response.addHeader("Cache-Control","no-store")
         def threshold = params.threshold ?: 20
         /* get taxon breakdown */
-        def taxonUrl = ConfigurationHolder.config.biocacheServicesUrl + "/breakdown/{entity}/{uid}?max=" + threshold
+        def taxonUrl = Holders.config.biocacheServicesUrl + "/breakdown/{entity}/{uid}?max=" + threshold
         taxonUrl = taxonUrl.replaceFirst(/\{uid\}/, params.id ?: '')
         taxonUrl = taxonUrl.replaceFirst(/\{entity\}/, wsEntityForBreakdown(params.id))
         //println "taxonUrl: " + taxonUrl
@@ -673,7 +673,7 @@ class PublicController {
     }
 
     def chart = {}
-    
+
     /************************************ helpers ***********************************/
     private String limit(str, int length) {
         if (str?.size() > length) {

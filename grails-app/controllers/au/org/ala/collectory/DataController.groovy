@@ -1,7 +1,7 @@
 package au.org.ala.collectory
 import grails.converters.JSON
 import groovy.xml.MarkupBuilder
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 import org.codehaus.groovy.grails.web.servlet.HttpHeaders
 import org.xml.sax.SAXException
 
@@ -161,7 +161,7 @@ class DataController {
     def notModified = {
         render(status: 304)
     }
-    
+
     def notFound = { text ->
         render(status:404, text: text)
     }
@@ -349,12 +349,12 @@ class DataController {
         def clazz = capitalise(urlForm)
         def domain = grailsApplication.getClassForName("au.org.ala.collectory.${clazz}")
         def list = domain.list()
-        
+
         // suppress 'declined' data resources
         if (urlForm == 'dataResource' && params.public == "true") {
             list = list.findAll { it.status != 'declined' }
         }
-        
+
         // init results with total
         def results = [total: list.size()]
 
@@ -476,7 +476,7 @@ class DataController {
      *
      */
     def delete = {
-        if (ConfigurationHolder.config.deletesForbidden) {
+        if (Holders.config.deletesForbidden) {
             render(status:405, text:'delete is currently unavailable')
             return
         }
@@ -638,7 +638,7 @@ class DataController {
         return new LinkedHashMap(
             [contact: buildContactModel(cf.contact), role: cf.role, primaryContact: cf.primaryContact,
                     editor: cf.administrator, notify: cf.notify, dateCreated: cf.dateCreated, lastUpdated: cf.dateLastModified,
-                    uri: "${ConfigurationHolder.config.grails.serverURL}/ws/${urlContext}/${cf.entityUid}/contacts/${cf.id}"])
+                    uri: "${Holders.config.grails.serverURL}/ws/${urlContext}/${cf.entityUid}/contacts/${cf.id}"])
     }
 
     /**
@@ -806,7 +806,7 @@ class DataController {
             map.contactName = it.primaryContact?.contact?.buildName() ?: ""
             map.contactEmail = it.primaryContact?.contact?.email ?: ""
             map.contactPhone = it.primaryContact?.contact?.phone ?: ""
-            map.uri = it.primaryContact ? "${ConfigurationHolder.config.grails.serverURL}/ws/${ProviderGroup.urlFormFromUid(it.uid)}/${it.uid}/contacts/${it.primaryContact?.id}" : ''
+            map.uri = it.primaryContact ? "${Holders.config.grails.serverURL}/ws/${ProviderGroup.urlFormFromUid(it.uid)}/${it.uid}/contacts/${it.primaryContact?.id}" : ''
 
             return map
         }

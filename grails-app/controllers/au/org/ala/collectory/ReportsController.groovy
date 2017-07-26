@@ -1,6 +1,5 @@
 package au.org.ala.collectory
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import grails.converters.JSON
 import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent
 import grails.converters.XML
@@ -305,7 +304,7 @@ class ReportsController {
     def dataLinks = {
         [links: DataLink.list([sort:'provider'])]
     }
-    
+
     class ReportCommand {
         int totalCollections
         int totalInstitutions
@@ -449,7 +448,7 @@ class ReportsController {
                         " and administratorForEntity = 1 and admin = 1")[0]
                 latestActivity = ActivityLog.list([sort: 'timestamp', order:'desc', max:10])
                 break
-                
+
                 case 'membership':
                 partners = Institution.findAllByIsALAPartner(true)
 

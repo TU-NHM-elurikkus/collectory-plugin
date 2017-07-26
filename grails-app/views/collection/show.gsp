@@ -1,4 +1,4 @@
-<%@ page import="au.org.ala.collectory.ProviderGroup; org.codehaus.groovy.grails.commons.ConfigurationHolder; au.org.ala.collectory.Collection" %>
+<%@ page import="au.org.ala.collectory.ProviderGroup; grails.util.Holders; au.org.ala.collectory.Collection" %>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -91,7 +91,7 @@
       <g:if test="${instance.startDate || instance.endDate}">
           <p><cl:temporalSpanText start='${fieldValue(bean: instance, field: "startDate")}' end='${fieldValue(bean: instance, field: "endDate")}'/></p>
       </g:if>
-      
+
       <!-- Collection types -->
       <p><span class="category"><g:message code="collection.show.span07" />:</span>
       <cl:JSONListAsStrings json='${instance.collectionType}'/>.</p>
@@ -269,13 +269,13 @@
   var initial = -120;
   var imageWidth=240;
   var eachPercent = (imageWidth/2)/100;
-  
+
 /************************************************************\
 *
 \************************************************************/
 function onLoadCallback() {
   // summary biocache data
-  var biocacheRecordsUrl = "${ConfigurationHolder.config.grails.context}/public/biocacheRecords.json?uid=${instance.uid}";
+  var biocacheRecordsUrl = "${Holders.config.grails.context}/public/biocacheRecords.json?uid=${instance.uid}";
   $.get(biocacheRecordsUrl, {}, biocacheRecordsHandler);
 }
 /************************************************************\

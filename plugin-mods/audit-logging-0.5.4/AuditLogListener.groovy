@@ -51,7 +51,7 @@ import org.springframework.web.context.request.WebRequest
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import grails.util.GrailsUtil
 import grails.util.Environment
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 
 public class AuditLogListener implements PreDeleteEventListener, PostInsertEventListener, PostUpdateEventListener, Initializable {
 
@@ -74,12 +74,12 @@ public class AuditLogListener implements PreDeleteEventListener, PostInsertEvent
   Closure actorClosure
   void setActorClosure(Closure closure) {
     closure.delegate = this
-    closure.properties.putAt("log",this.log) 
+    closure.properties.putAt("log",this.log)
     this.actorClosure = closure
   }
 
   void init() {
-    if( Environment.getCurrent() != Environment.PRODUCTION && ConfigurationHolder.config.auditLog?.transactional == null ) {
+    if( Environment.getCurrent() != Environment.PRODUCTION && Holders.config.auditLog?.transactional == null ) {
       transactional = false
     }
 
@@ -477,9 +477,9 @@ public class AuditLogListener implements PreDeleteEventListener, PostInsertEvent
   String truncate(final obj) {
     truncate(obj,truncateLength.toInteger())
   }
-  
+
   String truncate(final obj, int max) {
-    log.trace "trimming object's string representation based on ${max} characters." 
+    log.trace "trimming object's string representation based on ${max} characters."
     def str = obj?.toString()?.trim()
     return (str?.length() > max) ? str?.substring(0, max) : str
   }
@@ -525,7 +525,7 @@ public class AuditLogListener implements PreDeleteEventListener, PostInsertEvent
    * save closure with your own code (should your particular database not work with this code)
    * you may over-ride the definition of this closure using ... TODO allow over-ride via config
    *
-   * To debug in Config.groovy set: 
+   * To debug in Config.groovy set:
    *    log4j.debug 'org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogListener'
    * or
    *    log4j.trace 'org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogListener'
@@ -541,7 +541,7 @@ public class AuditLogListener implements PreDeleteEventListener, PostInsertEvent
     try {
         // NOTE: you simply cannot use the session that GORM is using for some
         // audit log events. That's because some audit events occur *after* a
-        // transaction has committed. Late session save actions can invalidate 
+        // transaction has committed. Late session save actions can invalidate
         // sessions or you can essentially roll-back your audit log saves. This is
         // why you have to open your own session and transaction on some
         // transactional databases and not others.
