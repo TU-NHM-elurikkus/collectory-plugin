@@ -1,11 +1,11 @@
-<%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder; au.org.ala.collectory.ProviderGroup" %>
+<%@ page import="grails.util.Holders; au.org.ala.collectory.ProviderGroup" %>
 <html>
     <head>
         <title><g:message code="admin.home.title" /></title>
 	<meta name="layout" content="${grailsApplication.config.skin.layout}" />
 
     </head>
-    
+
     <body>
 
         <div id="nav">
@@ -16,17 +16,17 @@
             </ul>
             <ul id="nav-secondary" class="right">
                   <li class="nav-item">
-                          <a href="${ConfigurationHolder.config.ala.baseURL}" accesskey="3"><g:message code="admin.home.li.ala" /></a>
+                          <a href="${Holders.config.ala.baseURL}" accesskey="3"><g:message code="admin.home.li.ala" /></a>
                   </li>
                   <li class="nav-item">
-                          <a href="${ConfigurationHolder.config.grails.serverURL}" accesskey="4"><g:message code="admin.home.li.collections" /></a>
+                          <a href="${Holders.config.grails.serverURL}" accesskey="4"><g:message code="admin.home.li.collections" /></a>
                   </li>
                   <li class="nav-item">
                       <cl:isLoggedIn>
-                          <a href="http://auth.ala.org.au/cas/logout?url=${ConfigurationHolder.config.grails.serverURL}/admin/home"><g:message code="admin.logout" /></a>
+                          <a href="http://auth.ala.org.au/cas/logout?url=${Holders.config.grails.serverURL}/admin/home"><g:message code="admin.logout" /></a>
                       </cl:isLoggedIn>
                       <cl:isNotLoggedIn>
-                          <a href="http://auth.ala.org.au/cas/login?service=${ConfigurationHolder.config.security.cas.serverName}/${ConfigurationHolder.config.security.cas.context}/admin"><g:message code="admin.login" /></a>
+                          <a href="http://auth.ala.org.au/cas/login?service=${Holders.config.security.cas.serverName}/${Holders.config.security.cas.context}/admin"><g:message code="admin.login" /></a>
                       </cl:isNotLoggedIn>
                   </li>
             </ul>
@@ -61,7 +61,7 @@
             <div class="homeCell">
               <h4 class="inline"><g:message code="admin.home.welcome.title02" /></h4>
                 <span style="" class="buttons" style="float: right;">
-                  <a href="${ConfigurationHolder.config.security.cas.loginUrl}?service=${ConfigurationHolder.config.grails.serverURL}/admin">&nbsp;<g:message code="admin.home.welcome.login" />&nbsp;</a>
+                  <a href="${Holders.config.security.cas.loginUrl}?service=${Holders.config.grails.serverURL}/admin">&nbsp;<g:message code="admin.home.welcome.login" />&nbsp;</a>
                 </span>
               <p><g:message code="admin.home.welcome.des02" /></p>
             </div>

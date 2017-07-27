@@ -1,14 +1,14 @@
-<%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder; au.org.ala.collectory.ProviderGroup" %>
+<%@ page import="au.org.ala.collectory.ProviderGroup" %>
 <html>
     <head>
         <title><g:message code="admin.index.title" /></title>
 	<meta name="layout" content="${grailsApplication.config.skin.layout}" />
 
     </head>
-    
+
     <body>
       <div class="floating-content">
-    
+
           <div style="float:right;">
             <g:link class="mainLink" controller="public" action="map"><g:message code="admin.index.link01" /></g:link>
           </div>

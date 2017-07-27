@@ -1,7 +1,6 @@
 package au.org.ala.collectory
 
 import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class ContactController {
 
@@ -46,7 +45,7 @@ class ContactController {
             render contactInstance.buildName()
         }
     }
-    
+
     def create = {
         def contactInstance = new Contact()
         contactInstance.properties = params
@@ -102,7 +101,7 @@ class ContactController {
             if (params.version) {
                 def version = params.version.toLong()
                 if (contactInstance.version > version) {
-                    
+
                     contactInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'contact.label', default: 'Contact')] as Object[], "Another user has updated this Contact while you were editing")
                     render(view: "edit", model: [contactInstance: contactInstance, returnTo: params.returnTo])
                     return

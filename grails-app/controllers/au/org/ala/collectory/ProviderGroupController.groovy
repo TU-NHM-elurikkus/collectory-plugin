@@ -8,7 +8,7 @@ import org.apache.commons.io.IOUtils
 import org.apache.tools.zip.ZipFile
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.multipart.MultipartFile
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent
 import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogListener
 
@@ -309,7 +309,7 @@ abstract class ProviderGroupController {
         // default is to do nothing
         // sub-classes override to do specific processing
     }
-    
+
     /**
      * Update location attributes
      */
@@ -630,7 +630,7 @@ abstract class ProviderGroupController {
                     pg."${target}" = new Image(file: filename)
                     String subDir = pg.urlForm()
 
-                    def colDir = new File(ConfigurationHolder.config.repository.location.images as String, subDir)
+                    def colDir = new File(Holders.config.repository.location.images as String, subDir)
                     colDir.mkdirs()
                     File f = new File(colDir, filename)
                     log.debug "saving ${filename} to ${f.absoluteFile}"

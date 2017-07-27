@@ -119,7 +119,6 @@
                               <label for="scientificNames"><g:message code="collection.range.label09" /></label>
                             </td>
                             <td valign="top" class="value ${hasErrors(bean: command, field: 'scientificNames', 'errors')}">
-                                <!--richui:autoComplete name="scientificNames" controller="collection" action="scinames" title="sci name"/-->
                               <g:textArea name="scientificNames" value="${command.listScientificNames().join(',')}"/>
                               <cl:helpText code="collection.scientificNames"/>
                           </td>

@@ -26,7 +26,7 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
 
-    repositories {        
+    repositories {
         mavenLocal()
         mavenRepo("http://nexus.ala.org.au/content/groups/public/") {
             updatePolicy 'always'
@@ -49,14 +49,13 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile ":cache:1.1.2"
+        compile ":cache:1.1.8"
         runtime ":hibernate:3.6.10.11"
         runtime ":jquery:1.11.1"
-        runtime ":resources:1.2.7"
-        runtime ":audit-logging:0.5.5.3"
+        runtime ":resources:1.2.14"
+        runtime ":audit-logging:1.0.7"
         runtime ":cache-headers:1.1.6"
         runtime ":rest:0.8"
-        runtime ":richui:0.8"
         runtime ":tiny-mce:3.4.4"
         runtime ":cors:1.1.8"
     }
